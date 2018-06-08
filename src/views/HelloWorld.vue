@@ -1,14 +1,12 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+  <div ref="canvas"></div>
 </template>
 
 <script>
 import * as THREE from 'three'
 
 export default {
-  name: 'app',
+  name: 'HelloWorld',
   data () {
     return {
       scene: null,
@@ -23,9 +21,9 @@ export default {
     console.log('THREE: ', THREE)
   },
   mounted () {
-    // this.init()
-    // this.renderBox()
-    // this.animate()
+    this.init()
+    this.renderBox()
+    this.animate()
   },
   methods: {
     init () {
@@ -33,7 +31,7 @@ export default {
       this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
       this.renderer = new THREE.WebGLRenderer()
       this.renderer.setSize(window.innerWidth, window.innerHeight)
-      document.body.appendChild(this.renderer.domElement)
+      this.$refs.canvas.appendChild(this.renderer.domElement)
     },
     renderBox () {
       this.geometry = new THREE.BoxGeometry( 1, 1, 1 )
@@ -51,13 +49,3 @@ export default {
   }
 }
 </script>
-
-<style>
-body {
-  margin: 0;
-}
-canvas {
-  width: 100%;
-  height: 100%;
-}
-</style>  
