@@ -1,25 +1,25 @@
 <template>
-  <div ref="canvas"></div>
+  <div ref="canvas">
+    <div id="info">Description</div>
+  </div>
 </template>
 
 <script>
 import * as THREE from 'three'
 
 export default {
-  name: 'Lines',
+  name: 'TheText',
   data () {
     return {
       scene: null,
       camera: null,
       renderer: null,
       geometry: null,
-      material: null,
-      line: null
+      material: null
     }
   },
   mounted () {
     this.init()
-    this.render()
   },
   methods: {
     init () {
@@ -32,15 +32,20 @@ export default {
       this.$refs.canvas.appendChild(this.renderer.domElement)
     },
     render () {
-      this.geometry = new THREE.Geometry()
-      this.geometry.vertices.push(new THREE.Vector3( -10, 0, 0))
-      this.geometry.vertices.push(new THREE.Vector3( 0, 10, 0))
-      this.geometry.vertices.push(new THREE.Vector3( 10, 0, 0))
-      this.material = new THREE.LineBasicMaterial({ color: 0x0000ff })
-      this.line = new THREE.Line(this.geometry, this.material)
-      this.scene.add(this.line)
-      this.renderer.render(this.scene, this.camera)
+
     }
   }
 }
 </script>
+
+<style scoped>
+#info {
+  color: #fff;
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  text-align: center;
+  z-index: 100;
+  display:block;
+}
+</style>

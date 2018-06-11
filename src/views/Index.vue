@@ -16,7 +16,9 @@ export default {
       list: [
         { label: 'Hello World', path: 'hello-world' },
         { label: 'Compatibility', path: 'compatibility' },
-        { label: 'Lines', path: 'lines' }
+        { label: 'Lines', path: 'lines' },
+        { label: 'BasicText', path: 'basic-text' },
+        { label: 'Test', path: 'test' }
       ]
     }
   }

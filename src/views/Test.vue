@@ -6,15 +6,12 @@
 import * as THREE from 'three'
 
 export default {
-  name: 'Lines',
+  name: 'TheTest',
   data () {
     return {
       scene: null,
       camera: null,
-      renderer: null,
-      geometry: null,
-      material: null,
-      line: null
+      renderer: null
     }
   },
   mounted () {
@@ -24,7 +21,7 @@ export default {
   methods: {
     init () {
       this.scene = new THREE.Scene()
-      this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500)
+      this.camera = new THREE.PerspectiveCamera(20, window.innerWidth / window.innerHeight, 0.1, 1000)
       this.camera.position.set(0, 0, 100)
       this.camera.lookAt(new THREE.Vector3(0, 0, 0))
       this.renderer = new THREE.WebGLRenderer()
@@ -32,13 +29,10 @@ export default {
       this.$refs.canvas.appendChild(this.renderer.domElement)
     },
     render () {
-      this.geometry = new THREE.Geometry()
-      this.geometry.vertices.push(new THREE.Vector3( -10, 0, 0))
-      this.geometry.vertices.push(new THREE.Vector3( 0, 10, 0))
-      this.geometry.vertices.push(new THREE.Vector3( 10, 0, 0))
-      this.material = new THREE.LineBasicMaterial({ color: 0x0000ff })
-      this.line = new THREE.Line(this.geometry, this.material)
-      this.scene.add(this.line)
+      const geometry = new THREE.CylinderGeometry(5, 5, 20, 64)
+      const material = new THREE.MeshBasicMaterial({ color: 0xffff00 })
+      const cylinder = new THREE.Mesh(geometry, material)
+      this.scene.add(cylinder)
       this.renderer.render(this.scene, this.camera)
     }
   }
